@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Not Fight Club</title>
+</head>
+<body>
+<div class="container-body">
+    <header class="header">
+        <h2>BF</h2>
+        <div class="container-header-btn">
+            <span class="icon settings"></span>
+            <span class="icon home"></span>
+            <span class="icon profile"></span>
+        </div>
+    </header>    
+    <section class="registration-page">
+        <h1>Hello warrior!</h1>
+        <div>What is your name?</div>
+        <form>
+        <input id="user-name" type="text" placeholder="User-Name">
+        <input type="button" id="btn-go" onclick="getUserName()" value="Go!!!">
+        </form>
+    </section>
+    <section class="home-page">
+        <div class="container-main">
+            <form class="input-fight">
+                <input type="button" value="Fight!" onclick="pageFight()" class="btn-fight">
+            </form>
+        </div>
+    </section>
+    <section class="battle-page">
+        <div class="container-battle">
+            <div class="user-warrior">
+                <img src="#" alt="avatar user">
+            </div>
+            <div class="container-list">
+                <div class="attack-list-user">
+                    <div>Attack zone<br>(pick one zone)</div>
+                    <div>
+                        <label for="head">Head</label>
+                        <input type="radio" id="head" name="attack-user" value="head">
+                    </div>
+                    <div>
+                        <label for="neck">Neck</label>
+                        <input type="radio" id="neck" name="attack-user" value="neck">
+                    </div>
+                    <div>
+                        <label for="body">Body</label>
+                        <input type="radio" id="body" name="attack-user" value="body">
+                    </div>
+                    <div>
+                        <label for="belly">Belly</label>
+                        <input type="radio" id="belly" name="attack-user" value="belly">
+                    </div>
+                    <div>
+                        <label for="legs">Legs</label>
+                        <input type="radio" id="legs" name="attack-user" value="legs">
+                    </div>
+                </div>
+                <div class="block-list-user">
+                    <div>Block zone<br>(pick two zone)</div>
+                    <div>
+                        <input type="checkbox" class="block-zone" onclick="activeBtnBattle()" value="0">
+                        <label for="head">Head</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="block-zone" onclick="activeBtnBattle()" value="1">
+                        <label for="neck">Neck</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="block-zone" onclick="activeBtnBattle()" value="2">
+                        <label for="body">Body</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="block-zone" onclick="activeBtnBattle()" value="3">
+                        <label for="belly">Belly</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="block-zone" onclick="activeBtnBattle()" value="4">
+                        <label for="legs">Legs</label>
+                    </div>
+                </div>
+            </div>
+            <div class="monster-warrior">
+                    <img src="#" alt="avatar monster">
+            </div>
+        </div>
+        <input type="button" name="battle" class="battle" value="battle" disabled>
+        <div class="window-log"></div>
+    </section> 
+</div>
+    <script src="script.js"></script>
+</body>
+</html>

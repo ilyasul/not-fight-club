@@ -1,0 +1,132 @@
+body {
+    margin: 0;
+    background-color: aquamarine;
+}
+
+.container-body {
+    display: flex;
+    flex-direction: column;
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+.registration-page {
+    display: none;
+}
+
+.home-page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+}
+
+.container-header-btn {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.container-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+}
+
+.input-fight {
+    width: 10%;
+    height: 10%;
+}
+
+.btn-fight {
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    background-color: blueviolet;
+    color: blanchedalmond;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.icon.settings {
+    background-image: url(assets/svg/settings.svg);
+}
+
+.icon.profile {
+    background-image: url(assets/svg/profile.svg);
+}
+
+.icon.home {
+    background-image: url(assets/svg/home.svg);
+}
+
+
+.battle-page {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.container-battle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-list {
+    display: flex;
+    column-gap: 40px;
+    position: relative;
+}
+
+.container-list::before {
+    position: absolute;
+    left: 50%;
+    content: '';
+    background-color: red;
+    width: 3px;
+    height: 100%;
+}
+
+.attack-list-user {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.block-list-user {
+    display: flex;
+    flex-direction: column;
+}
+
+.window-log {
+    display: flex;
+    margin-bottom: 10px;
+    background-color: white;
+    overflow: auto;
+    border: solid 1px;
+    height: 30%;
+    width: 100%;
+    font-size: 16px;
+}
+
