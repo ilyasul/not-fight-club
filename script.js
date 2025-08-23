@@ -67,11 +67,11 @@ function getUserName() {
         pageReg.style.display = 'none';
         header.style.display = 'flex';
         userName.value = ''; 
-        getUser();
         if (userNameValue === value) {
             return value;
         } else {
             localStorage.setItem('username', value);
+            getUser();
             localStorage.setItem('score wins', 0);
             localStorage.setItem('score loose', 0);
         }
