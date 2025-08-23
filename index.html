@@ -12,20 +12,18 @@
 </div>
 <div class="container-body">
     <header class="header">
-        <h2>BF</h2>
+        <h1>BF</h1>
         <div class="container-header-btn">
-            <span class="icon settings"></span>
+            <span class="icon settings" onclick="displayPageSettings()"></span>
             <span class="icon home" onclick="displayPageHome()"></span>
             <span class="icon profile"></span>
         </div>
     </header>    
     <section class="registration-page">
-        <h1>Hello warrior!</h1>
+        <h2>Hello warrior!</h2>
         <div>What is your name?</div>
-        <form>
         <input id="user-name" type="text" placeholder="User-Name">
         <input type="button" id="btn-go" onclick="getUserName()" value="Go!!!">
-        </form>
     </section>
     <section class="home-page">
         <div class="container-main">
@@ -34,11 +32,23 @@
             </form>
         </div>
     </section>
+    <section class="settings-page">
+        <div class="user-name-value"></div>
+        <img src="assets/avatar/9098409.svg" class="avatar user" height="200px">
+        <div class="score">
+            <span class="wins"></span>
+            <span class="loose"></span>
+        </div>
+        <div class="rename">Set name user<br>
+            <input id="user-name-set" type="text" placeholder="User-Name">
+            <input type="button" onclick="setUserName()" value="Set">
+        </div>
+    </section>
     <section class="battle-page">
         <div class="container-battle">
             <div class="user-warrior">
                 <div class="user-name-value"></div>
-                <img src="#" alt="avatar user">
+                <img src="assets/avatar/9098409.svg" height="200px" alt="avatar user" class="avatar user">
                 <div class="health-user">150</div>
             </div>
             <div class="container-list">
@@ -91,7 +101,7 @@
             </div>
             <div class="monster-warrior">
                     <div class="monster-name">Monster</div>
-                    <img src="#" alt="avatar monster">
+                    <img src="assets/avatar/monster.svg" alt="avatar monster" height="200px" class="avatar monster">
                     <div class="health-monster">110</div>
             </div>
         </div>
