@@ -1,13 +1,16 @@
 const userName = document.getElementById('user-name');
-const userNameValue = localStorage.getItem('username');
+const userNameSet = document.getElementById('user-name-set');
 const root = document.documentElement;
 const addUserNameValue = document.querySelectorAll('.user-name-value');
-const nameWarrior = localStorage.getItem("username");
+const nameWarrior = localStorage.getItem('username');
+const scoreLoose = localStorage.getItem('score loose');
 const btnGo = document.getElementById('btn-go');
 const btnFight = document.querySelector('.btn-fight');
-const btnHome = document.querySelector('.icon.home')
+const btnHome = document.querySelector('.icon.home');
+const header = document.querySelector('.header');
 const pageReg = document.querySelector('.registration-page');
 const pageHome = document.querySelector('.home-page');
+const pageSettings = document.querySelector('.settings-page');
 const pageBattle = document.querySelector('.battle-page');
 const btnBattle = document.querySelector('.battle');
 const checkboxBlockZone = document.querySelector('.block-zone');
@@ -16,12 +19,11 @@ const healthUser = document.querySelector('.health-user');
 const healthMonsterToHtml = document.querySelector('.health-monster');
 const pageWinLoose = document.querySelector('.screen-win-loose');
 const popUp = document.querySelector('.pop-up');
-const arrayPage = [pageReg, pageHome, pageBattle];
+const winsDisplay = document.querySelector('.wins');
+const looseDisplay = document.querySelector('.loose');
+const arrayPage = [pageReg, pageHome, pageBattle, pageSettings];
 let currentTime;
-console.log(btnHome)
-addUserNameValue.forEach(el => {
-    el.innerText = userNameValue;
-});
+console.log(userNameSet.value);
 
 function pageDisplayNone() {
     for (i = 0; i < arrayPage.length; i += 1) {
@@ -29,24 +31,50 @@ function pageDisplayNone() {
     }
 }
 
+function getUser() {
+    const userNameValue = localStorage.getItem('username');
+    addUserNameValue.forEach(el => {
+    el.innerHTML = userNameValue;
+});
+}
+
+function setUserName() {
+    const value = userNameSet.value;
+    localStorage.setItem('username', value);
+    getUser();
+    userNameSet.value = '';
+}
+
 function displayPageHome() {
     pageDisplayNone();
     pageHome.style.display = 'flex';
 }
 
+function displayPageSettings() {
+    pageDisplayNone();
+    pageSettings.style.display = 'flex';
+    winsDisplay.innerText = `Wins: ${localStorage.getItem('score wins')}`;
+    looseDisplay.innerText = `Loose: ${localStorage.getItem('score loose')}`;
+}
+
 function getUserName() {
     const value = userName.value;
+    const userNameValue = localStorage.getItem('username');
     if (value === '') {
         return;
     } else {
         pageHome.style.display = 'flex';
         pageReg.style.display = 'none';
+        header.style.display = 'flex';
+        userName.value = ''; 
+        getUser();
         if (userNameValue === value) {
             return value;
-        } else localStorage.setItem('username', value);
-        addUserNameValue.forEach(el => {
-            el.innerText = userNameValue;
-        });
+        } else {
+            localStorage.setItem('username', value);
+            localStorage.setItem('score wins', 0);
+            localStorage.setItem('score loose', 0);
+        }
     }
 };
 
@@ -82,7 +110,7 @@ function battleRestart() {
     }
 }
 
-btnFight.addEventListener('click', pageFight());
+btnFight.addEventListener('click', pageFight);
 pageWinLoose.addEventListener('click', battleRestart);
 
 
@@ -101,10 +129,10 @@ function monsterPickBlock() {
   for (let j = 0; j < 2; j += 1) {
     arrayMonsterBlock[j] = arrayConst[Math.round(Math.random() * 4)]
     if (arrayMonsterBlock[0] === arrayMonsterBlock[1]) {
-      arrayMonsterBlock[1] = arrayConst[Math.round(Math.random() * 4)];
+        const newArrayConst = arrayConst.filter((item) => item !== arrayMonsterBlock[0]);
+        arrayMonsterBlock[1] = newArrayConst[Math.ceil(Math.random() * 3)];
     }
   }
-  console.log(arrayMonsterBlock);
 }
 
 function monsterAttack(arrayUserBlock) {
@@ -169,9 +197,12 @@ function testFight1() {
     }
     healthBarUser();
      if (health <= 0) {
-        pageWinLoose.style.display = 'flex';
-        popUp.innerText = 'You Loose';
-        popUp.style.color = 'red';
+         pageWinLoose.style.display = 'flex';
+         popUp.innerText = 'You Loose';
+         popUp.style.color = 'red';
+         const scoreLoose = localStorage.getItem('score loose');
+         const scoreLooseTemp = +scoreLoose + 1;
+         localStorage.setItem('score loose', scoreLooseTemp);
     }
 }
 
@@ -193,7 +224,6 @@ function testFight2() {
         }
     } else {
         healthMonster -= baseAttack;
-        console.log(`test attack multiply ${multiplyRound}`)
         if (multiplyRound === 0) {
             logArea.innerHTML = `${currentTime} - ${nameWarrior} attacked the Monster in the ${userAttack}. Monster blocked ${userAttack}<br>` + logArea.innerHTML;
         } else {
@@ -205,6 +235,9 @@ function testFight2() {
         pageWinLoose.style.display = 'flex';
         popUp.innerText = 'You Win';
         popUp.style.color = 'green';
+        const scoreWins = localStorage.getItem('score wins');
+        const scoreWinsTemp = +scoreWins + 1;
+        localStorage.setItem('score wins', scoreWinsTemp);
     }
 }
 

@@ -64,12 +64,14 @@ function testFight2(pickUserAttack) {
   } else healthMonster = healthMonster - 10 * attackMultiply;
 }
 
+const newArrayConst = arrayConst.filter((item) => item !== arrayConst[1])
+console.log (newArrayConst);
+arrayMonsterBlock[1] = newArrayConst[Math.round(Math.random() * 3)];
+
 
 /*testFight1(4, 1);
 console.log(`current health ${health}`)
 testFight1(3, 2);
 console.log(`current health ${health}`)*/
-testFight2(4);
-console.log(`current health monster ${healthMonster}`)
-testFight2(3);
-console.log(`current health monster ${healthMonster}`)
+
+

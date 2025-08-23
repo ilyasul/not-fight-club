@@ -1,6 +1,6 @@
 :root {
    --health-user-bar: 100%;
-   --health-monster-bar: 100%; 
+   --health-monster-bar: 100%;
 }
 
 body {
@@ -18,7 +18,7 @@ body {
 }
 
 .registration-page {
-    display: none;
+    display: block;
 }
 
 .home-page {
@@ -30,7 +30,7 @@ body {
 }
 
 .header {
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -105,6 +105,11 @@ body {
     align-items: center;
     position: relative;
     width: 15%;
+}
+
+.avatar {
+    width: 60%;
+    height: 60%;
 }
 
 .health-user {
@@ -226,5 +231,23 @@ body {
     background-color: bisque;
     border-radius: 10px;
     z-index: 4;
+}
+
+.settings-page {
+    display: none;
+    flex-direction: column;
+}
+
+.score {
+    display: flex;
+    flex-direction: column;
+}
+
+.wins {
+    color: green;
+}
+
+.loose {
+    color: red;
 }
 
