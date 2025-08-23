@@ -7,12 +7,15 @@
     <title>Not Fight Club</title>
 </head>
 <body>
+<div class="screen-win-loose">
+    <div class="pop-up"></div>
+</div>
 <div class="container-body">
     <header class="header">
         <h2>BF</h2>
         <div class="container-header-btn">
             <span class="icon settings"></span>
-            <span class="icon home"></span>
+            <span class="icon home" onclick="displayPageHome()"></span>
             <span class="icon profile"></span>
         </div>
     </header>    
@@ -34,7 +37,9 @@
     <section class="battle-page">
         <div class="container-battle">
             <div class="user-warrior">
+                <div class="user-name-value"></div>
                 <img src="#" alt="avatar user">
+                <div class="health-user">150</div>
             </div>
             <div class="container-list">
                 <div class="attack-list-user">
@@ -85,7 +90,9 @@
                 </div>
             </div>
             <div class="monster-warrior">
+                    <div class="monster-name">Monster</div>
                     <img src="#" alt="avatar monster">
+                    <div class="health-monster">110</div>
             </div>
         </div>
         <input type="button" name="battle" class="battle" value="battle" disabled>

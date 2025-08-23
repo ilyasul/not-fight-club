@@ -1,15 +1,38 @@
 const userName = document.getElementById('user-name');
+const userNameValue = localStorage.getItem('username');
+const root = document.documentElement;
+const addUserNameValue = document.querySelectorAll('.user-name-value');
 const nameWarrior = localStorage.getItem("username");
 const btnGo = document.getElementById('btn-go');
 const btnFight = document.querySelector('.btn-fight');
+const btnHome = document.querySelector('.icon.home')
 const pageReg = document.querySelector('.registration-page');
 const pageHome = document.querySelector('.home-page');
-const pageBattle = document.querySelector('.battle-page')
+const pageBattle = document.querySelector('.battle-page');
 const btnBattle = document.querySelector('.battle');
 const checkboxBlockZone = document.querySelector('.block-zone');
 const logArea = document.querySelector('.window-log');
+const healthUser = document.querySelector('.health-user');
+const healthMonsterToHtml = document.querySelector('.health-monster');
+const pageWinLoose = document.querySelector('.screen-win-loose');
+const popUp = document.querySelector('.pop-up');
+const arrayPage = [pageReg, pageHome, pageBattle];
 let currentTime;
+console.log(btnHome)
+addUserNameValue.forEach(el => {
+    el.innerText = userNameValue;
+});
 
+function pageDisplayNone() {
+    for (i = 0; i < arrayPage.length; i += 1) {
+        arrayPage[i].style.display = 'none';
+    }
+}
+
+function displayPageHome() {
+    pageDisplayNone();
+    pageHome.style.display = 'flex';
+}
 
 function getUserName() {
     const value = userName.value;
@@ -18,10 +41,12 @@ function getUserName() {
     } else {
         pageHome.style.display = 'flex';
         pageReg.style.display = 'none';
-        if (localStorage.getItem("username") === value) {
+        if (userNameValue === value) {
             return value;
         } else localStorage.setItem('username', value);
-        console.log(value);
+        addUserNameValue.forEach(el => {
+            el.innerText = userNameValue;
+        });
     }
 };
 
@@ -46,7 +71,20 @@ function setTime () {
     return currentTime;
 }
 
-btnFight.addEventListener('click',pageFight());
+function battleRestart() {
+    const element = event.target;
+    if (element.className !== 'pop-up') {
+        pageWinLoose.style.display = 'none';
+        health = 150;
+        healthMonster = 110;
+        healthBarMonster();
+        healthBarUser();
+    }
+}
+
+btnFight.addEventListener('click', pageFight());
+pageWinLoose.addEventListener('click', battleRestart);
+
 
 //section logic battle --------------------------------------------------
 
@@ -92,6 +130,18 @@ function monsterPickAttack() {
    arrayMonsterAttack[0] = arrayConst[Math.round(Math.random() * 4)];
 }
 
+function healthBarUser() {
+    const multiplyHealth = health / 150;
+    healthUser.innerText = health;
+    root.style.setProperty('--health-user-bar', `calc(100% * ${multiplyHealth}`);
+}
+
+function healthBarMonster() {
+    const multiplyHealth = healthMonster / 110;
+    healthMonsterToHtml.innerText = healthMonster;
+    root.style.setProperty('--health-monster-bar', `calc(100% * ${multiplyHealth}`);
+}
+
 function testFight1() {
     setTime(); 
     const userBlock = document.querySelectorAll('.block-zone:checked');
@@ -116,6 +166,12 @@ function testFight1() {
         } else {
             logArea.innerHTML = `${currentTime} - Monster attacked the ${nameWarrior} in the ${arrayMonsterAttack[0]}. ${nameWarrior} received damage ${baseAttack}<br>` + logArea.innerHTML;
         }
+    }
+    healthBarUser();
+     if (health <= 0) {
+        pageWinLoose.style.display = 'flex';
+        popUp.innerText = 'You Loose';
+        popUp.style.color = 'red';
     }
 }
 
@@ -143,6 +199,12 @@ function testFight2() {
         } else {
             logArea.innerHTML = `${currentTime} - ${nameWarrior} attacked the Monster in the ${userAttack}. Monster received damage ${baseAttack}<br>` + logArea.innerHTML;
         }
+    }
+    healthBarMonster();
+    if (healthMonster <= 0) {
+        pageWinLoose.style.display = 'flex';
+        popUp.innerText = 'You Win';
+        popUp.style.color = 'green';
     }
 }
 
