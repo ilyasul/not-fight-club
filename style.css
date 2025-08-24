@@ -269,7 +269,7 @@ body {
 
 .avatar-set {
     height: 11%;
-    width: 11%;
+    width: 12%;
     position: absolute;
     background-image: url(assets/svg/set-avatar.svg);
     background-size: cover;

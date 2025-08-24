@@ -158,7 +158,8 @@ function monsterPickBlock() {
         const newArrayConst = arrayConst.filter((item) => item !== arrayMonsterBlock[0]);
         arrayMonsterBlock[1] = newArrayConst[Math.ceil(Math.random() * 3)];
     }
-  }
+}
+console.log(arrayMonsterBlock)
 }
 
 function monsterAttack(arrayUserBlock) {
