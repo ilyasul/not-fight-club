@@ -2,7 +2,6 @@ const userName = document.getElementById('user-name');
 const userNameSet = document.getElementById('user-name-set');
 const root = document.documentElement;
 const addUserNameValue = document.querySelectorAll('.user-name-value');
-const nameWarrior = localStorage.getItem('username');
 const scoreLoose = localStorage.getItem('score loose');
 const btnGo = document.getElementById('btn-go');
 const btnFight = document.querySelector('.btn-fight');
@@ -11,7 +10,9 @@ const header = document.querySelector('.header');
 const pageReg = document.querySelector('.registration-page');
 const pageHome = document.querySelector('.home-page');
 const pageSettings = document.querySelector('.settings-page');
+const pageProfile = document.querySelector('.profile-page');
 const pageBattle = document.querySelector('.battle-page');
+const pageSetAvatar = document.querySelector('.screen-set-avatar')
 const btnBattle = document.querySelector('.battle');
 const checkboxBlockZone = document.querySelector('.block-zone');
 const logArea = document.querySelector('.window-log');
@@ -21,9 +22,23 @@ const pageWinLoose = document.querySelector('.screen-win-loose');
 const popUp = document.querySelector('.pop-up');
 const winsDisplay = document.querySelector('.wins');
 const looseDisplay = document.querySelector('.loose');
-const arrayPage = [pageReg, pageHome, pageBattle, pageSettings];
+const arrayAvatar = document.querySelectorAll('.avatar.user');
+const containerAvatarImage = document.querySelector('.container-avatar-pick');
+const imageAvatar = document.querySelectorAll('.avatar-pick');
+const arrayPage = [pageReg, pageHome, pageBattle, pageProfile];
 let currentTime;
-console.log(userNameSet.value);
+console.log();
+
+
+function avatarReSet() {
+    const element = event.target;
+    const imageSrc =  element.getAttribute('src');
+    console.log(imageSrc);
+    arrayAvatar.forEach(el => {
+        el.src = imageSrc;
+    });
+    pageSetAvatar.style.display = 'none';
+}
 
 function pageDisplayNone() {
     for (i = 0; i < arrayPage.length; i += 1) {
@@ -34,8 +49,8 @@ function pageDisplayNone() {
 function getUser() {
     const userNameValue = localStorage.getItem('username');
     addUserNameValue.forEach(el => {
-    el.innerHTML = userNameValue;
-});
+        el.innerHTML = userNameValue;
+    });
 }
 
 function setUserName() {
@@ -45,16 +60,25 @@ function setUserName() {
     userNameSet.value = '';
 }
 
+function setAvatar() {
+    pageSetAvatar.style.display = 'flex';
+}
+
 function displayPageHome() {
     pageDisplayNone();
     pageHome.style.display = 'flex';
 }
 
-function displayPageSettings() {
+function displayPageProfile() {
     pageDisplayNone();
-    pageSettings.style.display = 'flex';
+    pageProfile.style.display = 'flex';
     winsDisplay.innerText = `Wins: ${localStorage.getItem('score wins')}`;
     looseDisplay.innerText = `Loose: ${localStorage.getItem('score loose')}`;
+}
+
+function displayPageSettings() {
+    pageDisplayNone();
+    pageSettings.style.display = 'block';
 }
 
 function getUserName() {
@@ -112,7 +136,9 @@ function battleRestart() {
 
 btnFight.addEventListener('click', pageFight);
 pageWinLoose.addEventListener('click', battleRestart);
-
+imageAvatar.forEach (el => {
+    el.addEventListener('click', avatarReSet);
+})
 
 //section logic battle --------------------------------------------------
 
@@ -132,7 +158,8 @@ function monsterPickBlock() {
         const newArrayConst = arrayConst.filter((item) => item !== arrayMonsterBlock[0]);
         arrayMonsterBlock[1] = newArrayConst[Math.ceil(Math.random() * 3)];
     }
-  }
+}
+console.log(arrayMonsterBlock)
 }
 
 function monsterAttack(arrayUserBlock) {
@@ -171,7 +198,8 @@ function healthBarMonster() {
 }
 
 function testFight1() {
-    setTime(); 
+    setTime();
+    const nameWarrior = localStorage.getItem('username'); 
     const userBlock = document.querySelectorAll('.block-zone:checked');
     const arrayUserBlock = ['head', 'neck', 'body', 'belly', 'legs'];
     arrayUserBlock[+userBlock[0].value] = '';
@@ -208,6 +236,7 @@ function testFight1() {
 
 function testFight2() {
     setTime();
+    const nameWarrior = localStorage.getItem('username');
     const userAttack = document.querySelector('input[name="attack-user"]:checked').value;
     critMultiply = Math.round(Math.random() * 10);
     monsterPickBlock();

@@ -10,13 +10,21 @@
 <div class="screen-win-loose">
     <div class="pop-up"></div>
 </div>
+<div class="screen-set-avatar">
+    <div class="container-avatar-pick">
+        <img class="avatar-pick" src="assets/avatar/user1.svg">
+        <img class="avatar-pick" src="assets/avatar/user2.svg">
+        <img class="avatar-pick" src="assets/avatar/user3.svg">
+        <img class="avatar-pick" src="assets/avatar/user4.svg">
+    </div>
+</div>
 <div class="container-body">
     <header class="header">
         <h1>BF</h1>
         <div class="container-header-btn">
             <span class="icon settings" onclick="displayPageSettings()"></span>
             <span class="icon home" onclick="displayPageHome()"></span>
-            <span class="icon profile"></span>
+            <span class="icon profile" onclick="displayPageProfile()"></span>
         </div>
     </header>    
     <section class="registration-page">
@@ -32,13 +40,18 @@
             </form>
         </div>
     </section>
-    <section class="settings-page">
+    <section class="profile-page">
         <div class="user-name-value"></div>
-        <img src="assets/avatar/9098409.svg" class="avatar user" height="200px">
+        <div class="avatar container">
+            <img src="assets/avatar/user1.svg" class="avatar user" height="200px">
+            <span class="avatar-set" onclick="setAvatar()"></span>
+        </div>
         <div class="score">
             <span class="wins"></span>
             <span class="loose"></span>
         </div>
+    </section>
+    <section class="settings-page">
         <div class="rename">Set name user<br>
             <input id="user-name-set" type="text" placeholder="User-Name">
             <input type="button" onclick="setUserName()" value="Set">
@@ -48,7 +61,7 @@
         <div class="container-battle">
             <div class="user-warrior">
                 <div class="user-name-value"></div>
-                <img src="assets/avatar/9098409.svg" height="200px" alt="avatar user" class="avatar user">
+                <img src="assets/avatar/user1.svg" height="200px" alt="avatar user" class="avatar user">
                 <div class="health-user">150</div>
             </div>
             <div class="container-list">
