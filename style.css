@@ -233,7 +233,7 @@ body {
     z-index: 4;
 }
 
-.settings-page {
+.profile-page {
     display: none;
     flex-direction: column;
 }
@@ -251,3 +251,55 @@ body {
     color: red;
 }
 
+.settings-page {
+    display: none;
+}
+
+.avatar.container {
+    width: 20%;
+    height: 100%;
+    position: relative;
+    border: solid 1px black;
+}
+
+.avatar.container .avatar.user {
+    width: 100%;
+    height: 100%;
+}
+
+.avatar-set {
+    height: 11%;
+    width: 11%;
+    position: absolute;
+    background-image: url(assets/svg/set-avatar.svg);
+    background-size: cover;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.screen-set-avatar {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 3;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(100, 100, 100, 0.5);
+}
+
+.container-avatar-pick {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: antiquewhite;
+    width: 70%;
+    height: 80%;
+}
+
+.avatar-pick {
+    height: 80%;
+}
