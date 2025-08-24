@@ -25,7 +25,7 @@ const looseDisplay = document.querySelector('.loose');
 const arrayAvatar = document.querySelectorAll('.avatar.user');
 const containerAvatarImage = document.querySelector('.container-avatar-pick');
 const imageAvatar = document.querySelectorAll('.avatar-pick');
-const arrayPage = [pageReg, pageHome, pageBattle, pageProfile];
+const arrayPage = [pageReg, pageHome, pageBattle, pageProfile, pageSettings];
 let currentTime;
 console.log();
 
